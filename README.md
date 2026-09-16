@@ -162,3 +162,21 @@ analytics-modernization-fabric/
 │   ├── executive-overview.png
 │   └── operations-customer-experience.png
 └── .gitignore
+```
+
+## Dataset
+
+The project uses the public Olist Brazilian E-commerce dataset, which contains approximately 100,000 orders across customers, orders, items, payments, reviews, products, sellers, geolocation, and category translation tables.
+
+
+## What This Project Demonstrates
+
+- End-to-end cloud analytics architecture
+- Lakehouse and medallion design
+- PySpark-based transformation workflows
+- Dimensional modeling and grain-aware data design
+- Data quality validation and join integrity checks
+- Pipeline orchestration in Microsoft Fabric
+- Direct Lake semantic modeling
+- Power BI analytical reporting
+- Git-based project documentation
