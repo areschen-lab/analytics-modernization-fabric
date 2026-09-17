@@ -8,7 +8,7 @@ End-to-end analytics engineering project using Azure Data Lake Storage Gen2, Mic
 ## Project Overview
 This project modernizes a multi-table e-commerce dataset into a layered analytics platform using Azure Data Lake Storage Gen2 and Microsoft Fabric.
 
-The solution uses ADLS Gen2 as the external landing zone, a OneLake Shortcut for virtualized access, PySpark notebooks for Bronze/Silver/Gold processing, Fabric Data Pipeline for orchestration, and a Direct Lake semantic model for Power BI reporting.
+The solution uses ADLS Gen2 as the landing zone, a OneLake Shortcut for virtualized access, PySpark notebooks for Bronze/Silver/Gold processing, Fabric Data Pipeline for orchestration, and a Direct Lake semantic model for Power BI.
 
 ## Technology Stack
 - Azure Data Lake Storage Gen2
@@ -30,6 +30,17 @@ The solution uses ADLS Gen2 as the external landing zone, a OneLake Shortcut for
 5. Gold builds analytical fact and dimension tables.
 6. Fabric Pipeline orchestrates the three notebook stages.
 7. A Direct Lake semantic model exposes Gold data to Power BI.
+
+## Notebooks
+
+- [01 - Bronze Ingestion](notebooks/01_bronze_ingestion.ipynb)  
+  Configuration-driven ingestion from ADLS Gen2 via OneLake Shortcut, including special handling for multi-line review data.
+
+- [02 - Silver Transformations](notebooks/02_silver_transformations.ipynb)  
+  Data cleaning, enrichment, geographic standardization, and grain-preserving transformations.
+
+- [03 - Gold Modeling](notebooks/03_gold_modeling.ipynb)  
+  Dimensional modeling, fact construction, date dimension creation, and validation for analytics consumption.
 
 ## Medallion Architecture
 
@@ -57,12 +68,8 @@ Key work:
 Analytics-ready dimensional modeling.
 
 Key work:
-- `fact_orders`
-- `fact_order_items`
-- `dim_customer`
-- `dim_product`
-- `dim_seller`
-- `dim_date`
+- Built `fact_orders` and `fact_order_items`
+- Built `dim_customer`, `dim_product`, `dim_seller`, and `dim_date`
 - Canonical review selection
 - Order-level payment aggregation
 - Customer identity handling using `customer_unique_id`
@@ -179,4 +186,4 @@ The project uses the public Olist Brazilian E-commerce dataset, which contains a
 - Pipeline orchestration in Microsoft Fabric
 - Direct Lake semantic modeling
 - Power BI analytical reporting
-- Git-based project documentation
+- Version-controlled analytics project structure and documentation
