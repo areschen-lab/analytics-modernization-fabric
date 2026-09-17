@@ -29,7 +29,7 @@ The solution uses ADLS Gen2 as the landing zone, a OneLake Shortcut for virtuali
 4. Silver cleans, standardizes, validates, and enriches the data.
 5. Gold builds analytical fact and dimension tables.
 6. Fabric Pipeline orchestrates the three notebook stages.
-7. A Direct Lake semantic model exposes Gold data to Power BI.
+7. A Direct Lake semantic model serves the Gold layer to Power BI.
 
 ## Notebooks
 
