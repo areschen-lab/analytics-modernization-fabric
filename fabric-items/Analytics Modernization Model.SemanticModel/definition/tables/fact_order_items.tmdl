@@ -1,0 +1,81 @@
+table fact_order_items
+	lineageTag: 627eb99d-e99e-473c-ad6c-109e72aaa6a7
+	sourceLineageTag: [dbo].[fact_order_items]
+
+	column order_id
+		dataType: string
+		lineageTag: 46599c9d-a62a-4cf5-89a4-f9044d893c5d
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 38eda8f7-e16e-453b-a6ce-43cd87c7c7a1
+		sourceLineageTag: order_item_id
+		summarizeBy: sum
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 7c455d1b-e2c8-4488-bbb7-13dfa4f0365b
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		lineageTag: b0c420cf-2dd8-4b5c-b9e6-f289728a55f0
+		sourceLineageTag: seller_id
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: e316bb3e-dd1f-4bee-9754-2bc25bb8fea8
+		sourceLineageTag: price
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_value
+		dataType: double
+		lineageTag: fb2724b8-cfce-4892-b4b3-e9073922d7e3
+		sourceLineageTag: freight_value
+		summarizeBy: sum
+		sourceColumn: freight_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column item_total
+		dataType: double
+		lineageTag: d57f7aa2-36e2-4523-a923-51bc023fd242
+		sourceLineageTag: item_total
+		summarizeBy: sum
+		sourceColumn: item_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_order_items = entity
+		mode: directLake
+		source
+			entityName: fact_order_items
+			schemaName: dbo
+			expressionSource: 'DirectLake - analytics_lakehouse'
+

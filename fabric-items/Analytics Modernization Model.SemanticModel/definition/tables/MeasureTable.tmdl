@@ -1,0 +1,95 @@
+table MeasureTable
+	lineageTag: 7637817a-2049-4d47-9a18-8d8c7ccf2ab6
+
+	measure Orders =
+			
+			DISTINCTCOUNT(fact_orders[order_id])
+		formatString: 0
+		lineageTag: 424f19ec-d7ec-4fbb-9046-ce1ba2e8e055
+
+	measure Customers =
+			
+			DISTINCTCOUNT(fact_orders[customer_unique_id])
+		lineageTag: 7711d689-9a84-49ac-8357-1a2299f66b77
+
+	measure 'Product Revenue' =
+			
+			SUM(fact_order_items[price])
+		lineageTag: 2e60029c-12b2-465b-a0ed-3c1589457254
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Freight =
+			
+			SUM(fact_order_items[freight_value])
+		lineageTag: fdce54a3-d2da-492d-b532-cd0f5cfe1623
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GMV =
+			
+			SUM(fact_order_items[item_total])
+		lineageTag: 3efd2f56-d116-4b41-8583-9dafd4f4d924
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Payment Value' =
+			
+			SUM(fact_orders[payment_total])
+		lineageTag: d0a96097-7b3f-4822-980f-b5ecf48fffb3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AOV =
+			
+			DIVIDE(
+			    [Product Revenue],
+			    [Orders]
+			)
+		lineageTag: 0d3af8eb-14d8-4985-9085-cd3466c73f76
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Late Delivery Rate' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        [Orders],
+			        fact_orders[is_late] = 1
+			    ),
+			    [Orders]
+			)
+		lineageTag: e5276a5f-ff45-46d5-b3c2-e5583d3302a2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Review Score' =
+			
+			AVERAGE(fact_orders[review_score])
+		lineageTag: 0484b1b4-e6de-44f0-9834-d47c0bea8fd3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Delivery Days' =
+			
+			AVERAGE(fact_orders[delivery_days])
+		lineageTag: 6c7b85b7-c6a2-4799-b88f-24ea2116ba85
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		isHidden
+		formatString: 0
+		lineageTag: 01a9dcea-0c31-4b01-936d-53d0976bda45
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasureTable = calculated
+		mode: import
+		source = {BLANK()}
+
+	annotation PBI_Id = 0415c1bbbf654e3092ca7d0416a8ce04
+

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "a8e7862b8d0160c9c52a",
+  "displayName": "Operations & Customer Experience",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920
+}

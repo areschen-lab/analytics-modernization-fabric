@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "01_bronze_ingestion_exploration"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "de2c5192-5523-bc3e-4ebb-35613e5dd20c"
+  }
+}

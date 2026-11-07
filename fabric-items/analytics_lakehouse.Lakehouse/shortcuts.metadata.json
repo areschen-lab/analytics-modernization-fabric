@@ -1,0 +1,14 @@
+[
+  {
+    "name": "olist_adls",
+    "path": "/Files",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "d6ab1061-80dc-4c4e-98fe-d01ad8f1e32a",
+        "location": "https://aresanalyticslab.dfs.core.windows.net",
+        "subpath": "/raw/olist"
+      }
+    }
+  }
+]
