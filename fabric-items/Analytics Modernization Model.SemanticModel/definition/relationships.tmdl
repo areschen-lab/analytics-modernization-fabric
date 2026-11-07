@@ -1,0 +1,20 @@
+relationship 2d157f99-8226-bf52-3248-0049c818faac
+	fromColumn: fact_orders.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship 64df6318-5c92-1fa4-d620-20c7fdaaf390
+	fromColumn: fact_order_items.order_id
+	toColumn: fact_orders.order_id
+
+relationship 0ddcde71-adac-dabe-10fc-f74551c3db66
+	fromColumn: fact_order_items.product_id
+	toColumn: dim_product.product_id
+
+relationship a86314d8-ab2a-beef-af4a-4d8ce1312be1
+	fromColumn: fact_order_items.seller_id
+	toColumn: dim_seller.seller_id
+
+relationship ff0fa5eb-cba7-01c7-0e11-0e874a723b38
+	fromColumn: fact_orders.order_purchase_date
+	toColumn: dim_date.date
+

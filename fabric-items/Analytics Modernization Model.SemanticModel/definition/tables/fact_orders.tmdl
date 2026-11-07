@@ -1,0 +1,210 @@
+table fact_orders
+	lineageTag: d22c7a78-5e2e-49d7-ad3b-f58db012244c
+	sourceLineageTag: [dbo].[fact_orders]
+
+	column order_id
+		dataType: string
+		lineageTag: dd5a7794-0a95-4b6d-96aa-f3460ccd1b55
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 94a94264-5666-40b8-a986-c8b6e674ccb3
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		lineageTag: b46c5aad-a861-4b55-84cc-f10e0746209b
+		sourceLineageTag: order_status
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a68e42c7-9e8c-4f33-b53c-770cb4b3b118
+		sourceLineageTag: order_purchase_timestamp
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivered_customer_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 243c16e9-5664-4cd2-9d6c-64a0b03a29ce
+		sourceLineageTag: order_delivered_customer_date
+		summarizeBy: none
+		sourceColumn: order_delivered_customer_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_estimated_delivery_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 371dac9f-f23e-492c-b891-fd778aff9f80
+		sourceLineageTag: order_estimated_delivery_date
+		summarizeBy: none
+		sourceColumn: order_estimated_delivery_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_days
+		dataType: int64
+		formatString: 0
+		lineageTag: b1c9a74c-fe11-4efa-9329-89e77f83a12b
+		sourceLineageTag: delivery_days
+		summarizeBy: sum
+		sourceColumn: delivery_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column delay_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 943f9c18-2bc5-4acc-9efc-3c1613762173
+		sourceLineageTag: delay_days
+		summarizeBy: sum
+		sourceColumn: delay_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_late
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d2abddf-c475-4db3-9bef-e8f97635246e
+		sourceLineageTag: is_late
+		summarizeBy: sum
+		sourceColumn: is_late
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_total
+		dataType: double
+		lineageTag: 2facf94c-fad2-4324-a783-7c021c227add
+		sourceLineageTag: payment_total
+		summarizeBy: sum
+		sourceColumn: payment_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b0c42fb-5fba-46d2-bdc9-61fcf8e73848
+		sourceLineageTag: payment_count
+		summarizeBy: sum
+		sourceColumn: payment_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_id
+		dataType: string
+		lineageTag: 49f18877-8d6f-44da-b56a-98039e09c3c1
+		sourceLineageTag: review_id
+		summarizeBy: none
+		sourceColumn: review_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e1aff1c-27cb-430b-8369-b0f1e3cc6254
+		sourceLineageTag: review_score
+		summarizeBy: sum
+		sourceColumn: review_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_comment_title
+		dataType: string
+		lineageTag: 9bcea08a-e8a0-4f10-b9a1-688d71e6af71
+		sourceLineageTag: review_comment_title
+		summarizeBy: none
+		sourceColumn: review_comment_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_comment_message
+		dataType: string
+		lineageTag: aa5395f9-3fd5-404f-9510-d1ed03d197a6
+		sourceLineageTag: review_comment_message
+		summarizeBy: none
+		sourceColumn: review_comment_message
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_creation_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3ef8ad70-b847-4a82-8c5c-011603d51838
+		sourceLineageTag: review_creation_date
+		summarizeBy: none
+		sourceColumn: review_creation_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_answer_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 73d34fe1-04bf-4fba-bc11-a116a894a52f
+		sourceLineageTag: review_answer_timestamp
+		summarizeBy: none
+		sourceColumn: review_answer_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0c0c74ba-cce7-459d-bd6d-beb1bd1873f8
+		sourceLineageTag: order_purchase_date
+		summarizeBy: none
+		sourceColumn: order_purchase_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_unique_id
+		dataType: string
+		lineageTag: 8df26f04-f91f-46d4-b970-89eb3607f70b
+		sourceLineageTag: customer_unique_id
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Status' =
+			
+			IF(
+			    fact_orders[is_late] = 1,
+			    "Late",
+			    "On Time / Early"
+			)
+		lineageTag: 096c9042-bb31-41f9-92fe-07c7af5eddae
+		summarizeBy: none
+		expressionContext: userContext
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_orders = entity
+		mode: directLake
+		source
+			entityName: fact_orders
+			schemaName: dbo
+			expressionSource: 'DirectLake - analytics_lakehouse'
+

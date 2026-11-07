@@ -1,0 +1,71 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "e8f71ae0-ac7c-a857-4dce-c0a777d831e4",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "analytics_modernization"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "01_bronze_ingestion",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "98bafd3c-94fe-aaa4-41cc-251e626cf9af",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "analytics_modernization"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "02_silver_transformations",
+        "dependsOn": [
+          {
+            "activity": "01_bronze_ingestion",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "0bc5d1dc-ad27-be67-4e57-a6e8fb2e28dc",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "analytics_modernization"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "03_gold_modeling",
+        "dependsOn": [
+          {
+            "activity": "02_silver_transformations",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

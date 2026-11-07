@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Analytics Modernization Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9af041cc-6b37-96b4-4607-97a19919c860"
+  }
+}
