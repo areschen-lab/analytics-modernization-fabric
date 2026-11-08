@@ -1,0 +1,99 @@
+table dim_date
+	lineageTag: f7300c89-7013-4090-b4f9-5399e6e3337d
+	sourceLineageTag: [dbt_dev].[dim_date]
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1e0d6bea-ac69-44a0-8a00-c1cce882e84d
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: d0f2612d-f5bc-425a-b2cd-b117a84b9140
+		sourceLineageTag: year
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 5269ec5d-789c-4708-a6af-8044ccf96aa5
+		sourceLineageTag: quarter
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 969f9bb1-46c5-429b-8b21-72c0c4b493e7
+		sourceLineageTag: month
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 69357e08-40a4-437f-acca-7db57d545857
+		sourceLineageTag: month_start
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 145ca29e-72c6-4a89-bbb6-ce2761d554df
+		sourceLineageTag: month_name
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c313663-17a3-4935-98e0-553e2c6b2295
+		sourceLineageTag: day
+		summarizeBy: none
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: ee257e14-8e47-481d-a957-61896c74f13f
+		sourceLineageTag: day_of_week
+		summarizeBy: none
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: a6ba3c02-41ba-4b01-b37f-7a4bc62fd872
+		sourceLineageTag: day_name
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = entity
+		mode: directLake
+		source
+			entityName: dim_date
+			schemaName: dbt_dev
+			expressionSource: 'DirectLake - analytics_warehouse'
+

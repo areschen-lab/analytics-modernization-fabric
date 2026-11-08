@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Analytics Modernization dbt Model"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5363faf7-84f7-905a-457c-851e9ce061f7"
+  }
+}
