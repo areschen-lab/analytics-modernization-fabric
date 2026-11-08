@@ -1,0 +1,97 @@
+table dim_customer
+	lineageTag: 70742680-efeb-4ad9-ade8-16e7b3d04ec3
+	sourceLineageTag: [dbt_dev].[dim_customer]
+
+	column customer_id
+		dataType: string
+		lineageTag: 31ab7365-f86c-464a-8049-85100ecd2222
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_unique_id
+		dataType: string
+		lineageTag: c2c480e9-6536-4242-b016-316b4c1b95b3
+		sourceLineageTag: customer_unique_id
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_zip_code_prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: 43e80f66-76fd-49de-967f-99a7a55692ea
+		sourceLineageTag: customer_zip_code_prefix
+		summarizeBy: none
+		sourceColumn: customer_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: f7a13223-8583-477b-86cb-6c5bd0e9e7fc
+		sourceLineageTag: customer_city
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		lineageTag: f594a87f-ff5b-4c4b-9ee9-14c5629c5354
+		sourceLineageTag: customer_state
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column geo_city
+		dataType: string
+		lineageTag: 7c0c664b-5cdc-4196-9bf7-6ec10a64e35c
+		sourceLineageTag: geo_city
+		summarizeBy: none
+		sourceColumn: geo_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column geo_state
+		dataType: string
+		lineageTag: 6c0d4c92-6de1-4389-9243-face744f69b5
+		sourceLineageTag: geo_state
+		summarizeBy: none
+		sourceColumn: geo_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: 1c7613ba-1488-4b07-a51b-de28ce16eefe
+		sourceLineageTag: latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: fe4e60b2-03a8-47e2-aa6e-03dfd0c5195a
+		sourceLineageTag: longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_customer = entity
+		mode: directLake
+		source
+			entityName: dim_customer
+			schemaName: dbt_dev
+			expressionSource: 'DirectLake - analytics_warehouse'
+

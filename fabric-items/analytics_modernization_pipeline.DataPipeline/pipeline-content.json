@@ -65,6 +65,34 @@
             ]
           }
         ]
+      },
+      {
+        "type": "InvokeDataBuildToolJob",
+        "typeProperties": {
+          "dataBuildToolJobId": "f9f334c9-b1c6-bed2-491f-5102d767ca61",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "threads": 4,
+          "operation": "build"
+        },
+        "externalReferences": {
+          "connection": "e9f05ee5-2b6e-4184-b4ff-45c44cd70180"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "04_dbt_gold_build",
+        "dependsOn": [
+          {
+            "activity": "02_silver_transformations",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
       }
     ]
   }

@@ -1,0 +1,44 @@
+table MeasureTable
+	lineageTag: 192a6f6f-a04c-4ca3-af4d-3da2cae6aff2
+
+	measure AOV = DIVIDE([Product Revenue], [Orders])
+		lineageTag: 3f036e91-4e79-4cec-8ba8-40cba2f29274
+
+	measure Orders = DISTINCTCOUNT(fact_orders[order_id])
+		formatString: 0
+		lineageTag: 6449f87a-466a-4970-a18e-ae08ed286d10
+
+	measure Customers = DISTINCTCOUNT(fact_orders[customer_unique_id])
+		lineageTag: f00cf02c-2256-4f84-96a2-0adde3abc5e2
+
+	measure 'Product Revenue' = SUM(fact_order_items[price])
+		lineageTag: 89ea7261-afcc-43e1-9743-94a7321b2c9d
+
+	measure Freight = SUM(fact_order_items[freight_value])
+		lineageTag: 2ea515e7-922e-49d6-b7ba-9e8e15a10b07
+
+	measure GMV = SUM(fact_order_items[item_total])
+		lineageTag: 88368c81-03a0-4c0a-a120-deba78ff722a
+
+	measure 'Payment Value' = SUM(fact_orders[payment_total])
+		lineageTag: cfc2432d-52c4-4c39-a559-212a5f43fca2
+
+	measure 'Late Delivery Rate' = DIVIDE(CALCULATE([Orders], fact_orders[is_late] = 1), [Orders])
+		lineageTag: 08033015-0343-43c2-8c49-49f68138f5a4
+
+	measure 'Average Review Score' = AVERAGE(fact_orders[review_score])
+		lineageTag: dd5f267a-a1c1-46f0-bf04-acc402d1f6f5
+
+	measure 'Average Delivery Days' = AVERAGE(fact_orders[delivery_days])
+		lineageTag: 87db5fdb-6d46-4760-9386-a22c03a4226c
+
+	column Value
+		isHidden
+		lineageTag: b6f15269-f699-4631-a60a-8161ebdff8a4
+		isNameInferred
+		sourceColumn: [Value]
+
+	partition MeasureTable = calculated
+		mode: import
+		source = {BLANK()}
+

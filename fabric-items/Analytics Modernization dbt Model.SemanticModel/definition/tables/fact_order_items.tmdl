@@ -1,0 +1,81 @@
+table fact_order_items
+	lineageTag: b2fc01df-cd44-48d4-a78e-03e64f1bebfa
+	sourceLineageTag: [dbt_dev].[fact_order_items]
+
+	column order_id
+		dataType: string
+		lineageTag: 7a967310-c36e-4a05-98ca-b839070b83b0
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 65a3c6f5-0a96-45f6-9209-bdf015da8255
+		sourceLineageTag: order_item_id
+		summarizeBy: sum
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: abd823c1-89b4-4021-8037-d5795811f1b2
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		lineageTag: 9b06031d-4bad-4ecd-9520-617d6d5730f5
+		sourceLineageTag: seller_id
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: b9b4a216-6071-45d2-a43f-cb73046abe28
+		sourceLineageTag: price
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_value
+		dataType: double
+		lineageTag: 9508bf05-4a5c-47bd-8817-2049ef7783be
+		sourceLineageTag: freight_value
+		summarizeBy: sum
+		sourceColumn: freight_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column item_total
+		dataType: double
+		lineageTag: db8a9d5a-9c5a-4544-a653-970464fa59d5
+		sourceLineageTag: item_total
+		summarizeBy: sum
+		sourceColumn: item_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_order_items = entity
+		mode: directLake
+		source
+			entityName: fact_order_items
+			schemaName: dbt_dev
+			expressionSource: 'DirectLake - analytics_warehouse'
+

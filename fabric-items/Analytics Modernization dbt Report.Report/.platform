@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Analytics Modernization dbt Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "69ceeabe-6702-a879-436f-cf77c8afdc1a"
+  }
+}

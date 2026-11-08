@@ -1,0 +1,88 @@
+table dim_seller
+	lineageTag: 86cc816c-4832-436c-821f-5a0ca6a78d72
+	sourceLineageTag: [dbt_dev].[dim_seller]
+
+	column seller_id
+		dataType: string
+		lineageTag: dd28e801-7f75-4abf-9d0b-e8b2b27999dd
+		sourceLineageTag: seller_id
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_zip_code_prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e9f999a-aa1d-450c-9e27-d646b4fea0e0
+		sourceLineageTag: seller_zip_code_prefix
+		summarizeBy: none
+		sourceColumn: seller_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_city
+		dataType: string
+		lineageTag: f9221149-9605-4423-be6a-e56eba6a068e
+		sourceLineageTag: seller_city
+		summarizeBy: none
+		sourceColumn: seller_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_state
+		dataType: string
+		lineageTag: 59f2ecc8-9ce4-4330-9178-69b5ea08f57f
+		sourceLineageTag: seller_state
+		summarizeBy: none
+		sourceColumn: seller_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column geo_city
+		dataType: string
+		lineageTag: a3ef3310-299f-41df-a043-3e8cf8499241
+		sourceLineageTag: geo_city
+		summarizeBy: none
+		sourceColumn: geo_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column geo_state
+		dataType: string
+		lineageTag: 9a2f0eae-6d4e-4fbe-952e-af734b71d1df
+		sourceLineageTag: geo_state
+		summarizeBy: none
+		sourceColumn: geo_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: fe88e5e4-c427-473e-bcec-4bfff1760087
+		sourceLineageTag: latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 246e131e-314d-40b9-8de8-f05e52b6346c
+		sourceLineageTag: longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_seller = entity
+		mode: directLake
+		source
+			entityName: dim_seller
+			schemaName: dbt_dev
+			expressionSource: 'DirectLake - analytics_warehouse'
+
