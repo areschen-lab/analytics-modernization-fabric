@@ -1,0 +1,16 @@
+
+version: 2
+
+sources:
+  - name: dbo
+    database: analytics_lakehouse
+    schema: dbo
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    tables:
+      - name: silver_orders
+      - name: silver_order_reviews
+      - name: silver_order_payments

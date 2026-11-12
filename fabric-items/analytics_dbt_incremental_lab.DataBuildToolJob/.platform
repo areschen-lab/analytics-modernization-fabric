@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataBuildToolJob",
+    "displayName": "analytics_dbt_incremental_lab"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d2249f7c-82d9-b606-49c5-5c0d599e0bd9"
+  }
+}

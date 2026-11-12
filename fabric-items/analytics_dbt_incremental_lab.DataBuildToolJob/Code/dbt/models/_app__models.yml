@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_lab_orders
+    description: "Batch-aware order staging for incremental simulation."
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null

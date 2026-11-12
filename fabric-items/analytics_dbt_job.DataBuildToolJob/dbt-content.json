@@ -20,9 +20,9 @@
     }
   },
   "command": {
-    "operation": "build",
+    "operation": "test",
     "arguments": {
-      "select": "",
+      "exclude": "",
       "threads": 4
     }
   }
