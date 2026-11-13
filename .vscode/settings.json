@@ -1,0 +1,18 @@
+
+{
+  "terminal.integrated.env.windows": {
+    "DBT_PROFILES_DIR": "${workspaceFolder}\\.venv\\dbt-profiles",
+    "Path": "${env:Path};C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin"
+  },
+  "terminal.integrated.cwd": "${workspaceFolder}\\fabric-items\\analytics_dbt_incremental_lab.DataBuildToolJob\\Code\\dbt",
+
+  "files.associations": {
+    "*.sql": "jinja-sql",
+    "*.yml": "jinja-yaml",
+    "**/sql/**/*.sql": "sql",
+  },
+  
+  "dbt.allowListFolders": [
+    "fabric-items/analytics_dbt_incremental_lab.DataBuildToolJob/Code/dbt"
+    ]
+}
