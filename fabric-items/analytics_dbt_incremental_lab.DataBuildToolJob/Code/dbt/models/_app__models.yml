@@ -8,3 +8,31 @@ models:
         data_tests:
           - unique
           - not_null
+
+  - name: int_lab_payments_by_order
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: int_lab_reviews_canonical
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: int_lab_changed_order_ids
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: fact_lab_orders
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
