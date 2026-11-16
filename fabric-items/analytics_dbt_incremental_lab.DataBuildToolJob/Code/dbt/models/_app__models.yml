@@ -36,3 +36,12 @@ models:
         data_tests:
           - unique
           - not_null
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+        data_tests:
+          - not_null

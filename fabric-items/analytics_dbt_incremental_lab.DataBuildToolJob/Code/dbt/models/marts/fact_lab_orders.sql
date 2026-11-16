@@ -3,7 +3,8 @@
     config(
         materialized='incremental',
         unique_key='order_id',
-        incremental_strategy='merge'
+        incremental_strategy='merge',
+        on_schema_change='append_new_columns'
     )
 }}
 
@@ -12,6 +13,7 @@
 SELECT
     o.order_id,
     o.customer_id,
+    c.customer_unique_id,
     o.order_status,
     o.order_purchase_timestamp,
     CAST(o.order_purchase_timestamp AS DATE) AS order_purchase_date,
@@ -38,6 +40,9 @@ LEFT JOIN {{ ref('int_lab_payments_by_order') }} p
 
 LEFT JOIN {{ ref('int_lab_reviews_canonical') }} r
     ON o.order_id = r.order_id
+
+LEFT JOIN {{ ref('dim_customer') }} c
+    ON o.customer_id = c.customer_id
 
 {% if is_incremental() %}
 
