@@ -15,3 +15,4 @@ sources:
       - name: silver_order_reviews
       - name: silver_order_payments
       - name: silver_customers
+      - name: silver_order_items
