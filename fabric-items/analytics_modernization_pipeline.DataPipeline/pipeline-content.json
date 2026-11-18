@@ -2,93 +2,123 @@
   "properties": {
     "activities": [
       {
-        "type": "TridentNotebook",
+        "type": "ForEach",
         "typeProperties": {
-          "notebookId": "e8f71ae0-ac7c-a857-4dce-c0a777d831e4",
-          "workspaceId": "00000000-0000-0000-0000-000000000000",
-          "parameters": {
-            "run_mode": {
-              "value": "@pipeline().parameters.run_mode",
-              "type": "string"
-            },
-            "batch_id": {
-              "value": "@pipeline().parameters.batch_id",
-              "type": "string"
-            }
+          "isSequential": true,
+          "items": {
+            "value": "@range(0, if(equals(pipeline().parameters.run_mode, 'incremental'), pipeline().parameters.day_count, 1))",
+            "type": "Expression"
           },
-          "sessionTag": "analytics_modernization"
+          "activities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "e8f71ae0-ac7c-a857-4dce-c0a777d831e4",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "run_mode": {
+                    "value": {
+                      "value": "@pipeline().parameters.run_mode",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "batch_id": {
+                    "value": {
+                      "value": "@if(\n    equals(pipeline().parameters.run_mode, 'incremental'),\n    formatDateTime(addDays(pipeline().parameters.start_date, item()), 'yyyy-MM-dd'),\n    pipeline().parameters.batch_id\n)",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                },
+                "sessionTag": "analytics_modernization"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "01_bronze_ingestion",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "98bafd3c-94fe-aaa4-41cc-251e626cf9af",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "run_mode": {
+                    "value": {
+                      "value": "@pipeline().parameters.run_mode",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "batch_id": {
+                    "value": {
+                      "value": "@if(\n    equals(pipeline().parameters.run_mode, 'incremental'),\n    formatDateTime(addDays(pipeline().parameters.start_date, item()), 'yyyy-MM-dd'),\n    pipeline().parameters.batch_id\n)",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                },
+                "sessionTag": "analytics_modernization"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "02_silver_transformations",
+              "dependsOn": [
+                {
+                  "activity": "01_bronze_ingestion",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "InvokeDataBuildToolJob",
+              "typeProperties": {
+                "dataBuildToolJobId": "f9f334c9-b1c6-bed2-491f-5102d767ca61",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "fullRefresh": {
+                  "value": "@not(equals(pipeline().parameters.run_mode, 'incremental'))",
+                  "type": "Expression"
+                },
+                "threads": "1",
+                "operation": "build"
+              },
+              "externalReferences": {
+                "connection": "e9f05ee5-2b6e-4184-b4ff-45c44cd70180"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "03_dbt_gold_build",
+              "dependsOn": [
+                {
+                  "activity": "02_silver_transformations",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
         },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "01_bronze_ingestion",
+        "name": "Process Batches",
         "dependsOn": []
-      },
-      {
-        "type": "TridentNotebook",
-        "typeProperties": {
-          "notebookId": "98bafd3c-94fe-aaa4-41cc-251e626cf9af",
-          "workspaceId": "00000000-0000-0000-0000-000000000000",
-          "parameters": {
-            "run_mode": {
-              "value": "@pipeline().parameters.run_mode",
-              "type": "string"
-            },
-            "batch_id": {
-              "value": "@pipeline().parameters.batch_id",
-              "type": "string"
-            }
-          },
-          "sessionTag": "analytics_modernization"
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "02_silver_transformations",
-        "dependsOn": [
-          {
-            "activity": "01_bronze_ingestion",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
-      },
-      {
-        "type": "InvokeDataBuildToolJob",
-        "typeProperties": {
-          "dataBuildToolJobId": "f9f334c9-b1c6-bed2-491f-5102d767ca61",
-          "workspaceId": "00000000-0000-0000-0000-000000000000",
-          "threads": "1",
-          "operation": "build"
-        },
-        "externalReferences": {
-          "connection": "e9f05ee5-2b6e-4184-b4ff-45c44cd70180"
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "03_dbt_gold_build",
-        "dependsOn": [
-          {
-            "activity": "02_silver_transformations",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
       }
     ],
     "parameters": {
@@ -98,6 +128,14 @@
       },
       "batch_id": {
         "type": "string"
+      },
+      "start_date": {
+        "type": "string",
+        "defaultValue": "2018-06-10"
+      },
+      "day_count": {
+        "type": "int",
+        "defaultValue": 8
       }
     }
   }
