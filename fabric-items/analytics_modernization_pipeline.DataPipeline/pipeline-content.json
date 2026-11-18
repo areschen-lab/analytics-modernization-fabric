@@ -43,35 +43,11 @@
         ]
       },
       {
-        "type": "TridentNotebook",
-        "typeProperties": {
-          "notebookId": "0bc5d1dc-ad27-be67-4e57-a6e8fb2e28dc",
-          "workspaceId": "00000000-0000-0000-0000-000000000000",
-          "sessionTag": "analytics_modernization"
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "03_gold_modeling",
-        "dependsOn": [
-          {
-            "activity": "02_silver_transformations",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
-      },
-      {
         "type": "InvokeDataBuildToolJob",
         "typeProperties": {
           "dataBuildToolJobId": "f9f334c9-b1c6-bed2-491f-5102d767ca61",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
-          "threads": 4,
+          "threads": "1",
           "operation": "build"
         },
         "externalReferences": {
@@ -84,7 +60,7 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "04_dbt_gold_build",
+        "name": "03_dbt_gold_build",
         "dependsOn": [
           {
             "activity": "02_silver_transformations",
