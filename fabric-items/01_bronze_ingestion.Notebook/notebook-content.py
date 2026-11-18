@@ -47,11 +47,22 @@ from delta.tables import DeltaTable
 
 # CELL ********************
 
-## 02 Configuration
+## 02 Parameters
 
 # Run mode: full, backfill, incremental
 run_mode = "full"
 batch_id = ""
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+## 03 Configuration
 
 raw_path = "Files/olist_adls"
 landing_path = "Files/replay/landing"
@@ -85,7 +96,7 @@ assert run_mode in ("full", "backfill", "incremental")
 
 # CELL ********************
 
-## 03 Standard CSV ingestion
+## 04 Standard CSV ingestion
 
 if run_mode == "full":
 
@@ -117,7 +128,7 @@ if run_mode == "full":
 
 # CELL ********************
 
-## 04 Review special ingestion
+## 05 Review special ingestion
 
 if run_mode == "full":
 
@@ -151,7 +162,7 @@ if run_mode == "full":
 
 # CELL ********************
 
-## 05 Incremental Ingestion
+## 06 Incremental Ingestion
 
 
 if run_mode in ("backfill", "incremental"):
@@ -215,7 +226,7 @@ if run_mode in ("backfill", "incremental"):
 
 # CELL ********************
 
-## 06 Validation
+## 07 Validation
 
 if run_mode == "full":
 

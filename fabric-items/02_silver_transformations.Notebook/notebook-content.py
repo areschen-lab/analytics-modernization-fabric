@@ -71,8 +71,6 @@ from delta.tables import DeltaTable
 run_mode = "full"
 batch_id = ""
 
-assert run_mode in ("full", "backfill", "incremental")
-
 # METADATA ********************
 
 # META {
@@ -83,6 +81,9 @@ assert run_mode in ("full", "backfill", "incremental")
 # CELL ********************
 
 ## 03 Orders Transformation
+
+assert run_mode in ("full", "backfill", "incremental")
+assert run_mode != "incremental" or batch_id
 
 if run_mode == "full":
     silver_orders = (
