@@ -23,7 +23,7 @@
     "operation": "test",
     "arguments": {
       "exclude": "",
-      "threads": 4
+      "threads": 1
     }
   }
 }
