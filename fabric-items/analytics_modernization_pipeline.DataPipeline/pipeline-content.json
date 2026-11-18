@@ -6,6 +6,16 @@
         "typeProperties": {
           "notebookId": "e8f71ae0-ac7c-a857-4dce-c0a777d831e4",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "run_mode": {
+              "value": "@pipeline().parameters.run_mode",
+              "type": "string"
+            },
+            "batch_id": {
+              "value": "@pipeline().parameters.batch_id",
+              "type": "string"
+            }
+          },
           "sessionTag": "analytics_modernization"
         },
         "policy": {
@@ -23,6 +33,16 @@
         "typeProperties": {
           "notebookId": "98bafd3c-94fe-aaa4-41cc-251e626cf9af",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "run_mode": {
+              "value": "@pipeline().parameters.run_mode",
+              "type": "string"
+            },
+            "batch_id": {
+              "value": "@pipeline().parameters.batch_id",
+              "type": "string"
+            }
+          },
           "sessionTag": "analytics_modernization"
         },
         "policy": {
@@ -70,6 +90,15 @@
           }
         ]
       }
-    ]
+    ],
+    "parameters": {
+      "run_mode": {
+        "type": "string",
+        "defaultValue": "full"
+      },
+      "batch_id": {
+        "type": "string"
+      }
+    }
   }
 }

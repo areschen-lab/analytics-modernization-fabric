@@ -45,7 +45,7 @@ from delta.tables import DeltaTable
 # META   "language_group": "synapse_pyspark"
 # META }
 
-# CELL ********************
+# PARAMETERS CELL ********************
 
 ## 02 Parameters
 
