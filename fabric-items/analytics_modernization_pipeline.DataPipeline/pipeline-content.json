@@ -25,7 +25,7 @@
                   },
                   "batch_id": {
                     "value": {
-                      "value": "@if(\n    equals(pipeline().parameters.run_mode, 'incremental'),\n    formatDateTime(addDays(pipeline().parameters.start_date, item()), 'yyyy-MM-dd'),\n    pipeline().parameters.batch_id\n)",
+                      "value": "@if(\n    equals(pipeline().parameters.run_mode, 'incremental'),\n    formatDateTime(\n        addDays(pipeline().parameters.start_date, item()),\n        'yyyy-MM-dd'\n    ),\n    ''\n)",
                       "type": "Expression"
                     },
                     "type": "string"
@@ -58,7 +58,7 @@
                   },
                   "batch_id": {
                     "value": {
-                      "value": "@if(\n    equals(pipeline().parameters.run_mode, 'incremental'),\n    formatDateTime(addDays(pipeline().parameters.start_date, item()), 'yyyy-MM-dd'),\n    pipeline().parameters.batch_id\n)",
+                      "value": "@if(\n    equals(pipeline().parameters.run_mode, 'incremental'),\n    formatDateTime(\n        addDays(pipeline().parameters.start_date, item()),\n        'yyyy-MM-dd'\n    ),\n    ''\n)",
                       "type": "Expression"
                     },
                     "type": "string"
@@ -124,10 +124,11 @@
     "parameters": {
       "run_mode": {
         "type": "string",
-        "defaultValue": "full"
+        "defaultValue": "backfill"
       },
       "batch_id": {
-        "type": "string"
+        "type": "string",
+        "defaultValue": "backfill"
       },
       "start_date": {
         "type": "string",
