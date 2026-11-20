@@ -19,3 +19,4 @@ sources:
       - name: silver_order_items
       - name: silver_products
       - name: silver_sellers
+      - name: silver_batch_context      

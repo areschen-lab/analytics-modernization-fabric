@@ -75,3 +75,11 @@ models:
         data_tests:
           - unique
           - not_null          
+  - name: fact_order_daily_snapshot
+    columns:
+      - name: snapshot_date
+        data_tests:
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null          
