@@ -108,6 +108,33 @@
               "name": "03_dbt_gold_build",
               "dependsOn": [
                 {
+                  "activity": "Refresh SQL analytics endpoint1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "RefreshSqlEndpoint",
+              "typeProperties": {
+                "workspaceId": "8b9b41fe-bfe7-4bd2-a935-1307e6a0dc4f",
+                "sqlEndpointId": "57884deb-1a96-42ef-93f1-4432f3be09c1",
+                "recreateTables": false
+              },
+              "externalReferences": {
+                "connection": "87fecdaf-886d-4d45-ac13-b15973083fa4"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Refresh SQL analytics endpoint1",
+              "dependsOn": [
+                {
                   "activity": "02_silver_transformations",
                   "dependencyConditions": [
                     "Succeeded"
