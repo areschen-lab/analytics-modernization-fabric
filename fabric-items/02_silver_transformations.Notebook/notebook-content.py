@@ -729,3 +729,41 @@ if run_mode in ("backfill", "incremental"):
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+
+## 13 Batch Context
+
+if run_mode == "backfill":
+    snapshot_date = "2018-06-09"
+elif run_mode == "incremental":
+    snapshot_date = batch_id
+else:
+    snapshot_date = None
+
+batch_context = spark.createDataFrame(
+    [(run_mode, snapshot_date)],
+    ["run_mode", "snapshot_date"]
+).withColumn(
+    "snapshot_date",
+    F.to_date("snapshot_date")
+)
+
+(
+    batch_context.write
+    .format("delta")
+    .mode("overwrite")
+    .option("overwriteSchema", "true")
+    .saveAsTable("silver_batch_context")
+)
+
+batch_context.show()
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
